@@ -1,7 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function BlogCard({ title, excerpt, image, date, link = '#' }) {
+interface BlogCardProps {
+  title: string;
+  excerpt: string;
+  image: string;
+  date: string;
+  link?: string;
+}
+
+export default function BlogCard({ title, excerpt, image, date, link = '#' }: BlogCardProps): JSX.Element {
   return (
     <Link href={link}>
       <article className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow duration-300 group">

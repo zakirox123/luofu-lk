@@ -1,4 +1,4 @@
-export default function About() {
+export default function About(): JSX.Element {
   return (
     <div className="bg-gray-50 min-h-screen py-12">
       <div className="container mx-auto px-4">

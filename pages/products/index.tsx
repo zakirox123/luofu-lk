@@ -1,7 +1,7 @@
 import ProductCard from '@/components/ProductCard';
 import { products } from '@/data/products';
 
-export default function Products() {
+export default function Products(): JSX.Element {
   return (
     <div className="bg-gray-50 min-h-screen py-12">
       <div className="container mx-auto px-4">

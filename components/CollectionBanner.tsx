@@ -1,9 +1,23 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-export default function CollectionBanner({ title, subtitle, image, link, position = 'left' }) {
+interface CollectionBannerProps {
+  title: string;
+  subtitle: string;
+  image?: string;
+  link?: string;
+  position?: 'left' | 'right';
+}
+
+export default function CollectionBanner({ 
+  title, 
+  subtitle, 
+  image, 
+  link = '/products', 
+  position = 'left' 
+}: CollectionBannerProps): JSX.Element {
   return (
-    <Link href={link || '/products'}>
+    <Link href={link}>
       <div className="relative h-80 md:h-96 rounded-lg overflow-hidden group cursor-pointer shadow-lg">
         <div className="absolute inset-0">
           <Image

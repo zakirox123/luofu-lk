@@ -1,15 +1,19 @@
 import Link from 'next/link';
-import Image from 'next/image';
 import ProductCard from '@/components/ProductCard';
 import CollectionBanner from '@/components/CollectionBanner';
 import FeatureCard from '@/components/FeatureCard';
 import BlogCard from '@/components/BlogCard';
 import { products } from '@/data/products';
+import { FormEvent } from 'react';
 
-export default function Home() {
+export default function Home(): JSX.Element {
   const featuredProducts = products.filter(p => p.featured).slice(0, 4);
   const newProducts = products.slice(0, 8);
-  const topProducts = products.slice(4, 12);
+
+  const handleNewsletterSubmit = (e: FormEvent<HTMLFormElement>): void => {
+    e.preventDefault();
+    alert('Thank you for subscribing! (This is a demo)');
+  };
 
   return (
     <div>
@@ -181,11 +185,12 @@ export default function Home() {
           <p className="text-lg text-gray-200 mb-8 max-w-2xl mx-auto">
             Get exclusive offers, new arrivals, and the latest updates delivered to your inbox.
           </p>
-          <form className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
+          <form onSubmit={handleNewsletterSubmit} className="max-w-md mx-auto flex flex-col sm:flex-row gap-4">
             <input
               type="email"
               placeholder="Enter your email"
               className="flex-1 px-6 py-3 rounded-lg text-gray-800 focus:outline-none focus:ring-2 focus:ring-brand-gold"
+              required
             />
             <button
               type="submit"

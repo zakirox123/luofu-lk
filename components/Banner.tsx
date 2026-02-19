@@ -1,4 +1,6 @@
-export default function Banner() {
+import Link from 'next/link';
+
+export default function Banner(): JSX.Element {
   return (
     <div className="relative bg-gradient-to-r from-brand-blue to-blue-800 text-white py-20 md:py-32 overflow-hidden">
       <div className="absolute inset-0 opacity-10">
@@ -16,12 +18,12 @@ export default function Banner() {
           <p className="text-xl md:text-2xl mb-8 text-gray-200">
             Step into comfort with our premium collection of slippers. Quality crafted for your everyday relaxation.
           </p>
-          <a
+          <Link
             href="/products"
             className="inline-block bg-brand-gold text-brand-blue px-8 py-4 rounded-lg font-semibold text-lg hover:bg-yellow-400 transition-colors shadow-lg"
           >
             Shop Now
-          </a>
+          </Link>
         </div>
       </div>
     </div>

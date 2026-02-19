@@ -1,10 +1,15 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { Product } from '@/types';
 
-export default function ProductCard({ product }) {
+interface ProductCardProps {
+  product: Product;
+}
+
+export default function ProductCard({ product }: ProductCardProps) {
   const hasSale = product.originalPrice && product.originalPrice > product.price;
   const discountPercent = hasSale 
-    ? Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)
+    ? Math.round(((product.originalPrice! - product.price) / product.originalPrice!) * 100)
     : 0;
 
   return (
@@ -34,7 +39,7 @@ export default function ProductCard({ product }) {
             </p>
             {hasSale && (
               <p className="text-lg text-gray-400 line-through">
-                ${product.originalPrice.toFixed(2)}
+                ${product.originalPrice!.toFixed(2)}
               </p>
             )}
           </div>

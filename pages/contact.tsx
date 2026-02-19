@@ -1,5 +1,7 @@
-export default function Contact() {
-  const handleSubmit = (e) => {
+import { FormEvent } from 'react';
+
+export default function Contact(): JSX.Element {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     alert('Thank you for your message! We will get back to you soon. (This is a demo)');
   };
@@ -66,7 +68,7 @@ export default function Contact() {
               <textarea
                 id="message"
                 name="message"
-                rows="6"
+                rows={6}
                 required
                 className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none resize-none"
                 placeholder="Your message here..."

@@ -3,11 +3,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { products } from '@/data/products';
 
-export default function ProductDetail() {
+export default function ProductDetail(): JSX.Element {
   const router = useRouter();
   const { id } = router.query;
   
-  const product = products.find((p) => p.id === parseInt(id));
+  const productId = id ? parseInt(Array.isArray(id) ? id[0] : id) : NaN;
+  const product = products.find((p) => p.id === productId);
 
   if (!product) {
     return (
@@ -20,9 +21,14 @@ export default function ProductDetail() {
     );
   }
 
-  const handleAddToCart = () => {
+  const handleAddToCart = (): void => {
     alert(`Added ${product.name} to cart! (This is a demo)`);
   };
+
+  const hasSale = product.originalPrice && product.originalPrice > product.price;
+  const discountPercent = hasSale 
+    ? Math.round(((product.originalPrice! - product.price) / product.originalPrice!) * 100)
+    : 0;
 
   return (
     <div className="bg-gray-50 min-h-screen py-12">
@@ -53,13 +59,13 @@ export default function ProductDetail() {
                 <p className="text-3xl font-bold text-brand-blue">
                   ${product.price.toFixed(2)}
                 </p>
-                {product.originalPrice && product.originalPrice > product.price && (
+                {hasSale && (
                   <>
                     <p className="text-xl text-gray-400 line-through">
-                      ${product.originalPrice.toFixed(2)}
+                      ${product.originalPrice!.toFixed(2)}
                     </p>
                     <span className="bg-red-500 text-white px-2 py-1 rounded text-sm font-bold">
-                      Save {Math.round(((product.originalPrice - product.price) / product.originalPrice) * 100)}%
+                      Save {discountPercent}%
                     </span>
                   </>
                 )}

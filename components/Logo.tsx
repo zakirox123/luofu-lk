@@ -1,6 +1,4 @@
-import Image from 'next/image';
-
-export default function Logo() {
+export default function Logo(): JSX.Element {
   return (
     <div className="flex items-center space-x-2">
       <div className="text-2xl font-bold">
